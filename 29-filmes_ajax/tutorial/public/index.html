@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Filmes</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div id="main-container">
+        <h1>Registro de filmes</h1>
+        <form action="/new" method="POST">
+            <p>
+                <label for="nome">Nome do filme</label><br/>
+                <input type="text" name="nome" id="nome">
+            </p>
+            <p>
+                <label for="rating">Qualificação</label><br/>
+                <input type="range" min="0" max="10" name="rating" id="rating">
+            </p>
+
+            <input type="button" value="Registrar novo filme" id="bSubmit">
+        </form>
+
+        <div id="filmes-container">
+
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+    const bSubmit = document.querySelector('#bSubmit');
+
+    bSubmit.addEventListener('click', () =>{
+        //validar campos
+        const nome = document.querySelector('#nome').value;
+        const rating = document.querySelector('#rating').value;
+
+        if(nome.trim() === '' || rating.trim() === '') return false;
+
+        // enviar requisição POST a /new
+        fetch('/new', {
+            method: 'POST', 
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({nome: nome, rating: rating})
+        })
+        .then(res => res.text())
+        .then(data =>{
+            // mostrar mensagem de erro/sucesso
+            alert(data);
+
+            //atualizar lista de filmes
+            loadFilmes();
+        });
+       
+    });
+
+    function loadFilmes(){
+        fetch('/get-filmes', {method: 'GET'})
+        .then(res => res.json())
+        .then(data =>{
+            const filmes = document.querySelector('#filmes-container');
+            let html = '';
+            data.filmes.forEach(filme =>{
+                html += `<div>${filme.nome} <img src="img/star.png" width="16" />${filme.rating}</div>`
+            });
+            filmes.innerHTML = html;
+        });
+    }
+</script>

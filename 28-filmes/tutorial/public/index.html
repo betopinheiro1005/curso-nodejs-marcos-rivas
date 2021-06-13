@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Filmes</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div id="main-container">
+        <h1>Registro de filmes</h1>
+        <form action="/new" method="POST">
+            <p>
+                <label for="nome">Nome do filme</label><br/>
+                <input type="text" name="nome" id="nome">
+            </p>
+            <p>
+                <label for="rating">Qualificação</label><br/>
+                <input type="range" min="0" max="10" name="rating" id="rating">
+            </p>
+
+            <input type="submit" value="Registrar novo filme" id="bSubmit">
+        </form>
+
+        <div id="filmes-container">
+
+        </div>
+    </div>
+
+</body>
+</html>
