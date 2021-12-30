@@ -1,12 +1,6 @@
 # Curso de Node.JS
 ## vidamrr (Marcos Rivas)
 
-### Instalação de dependências
-
-```bash
-npm install
-```
-
 ### Lista de aulas - [Vídeos do curso](https://www.youtube.com/watch?v=APbb-z8A3Zc&list=PLvRPaExkZHFn_EGzNOXsWqtAAGl8ZCbUo)
 
 Aula 01 - Introdução  
